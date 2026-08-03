@@ -1,5 +1,8 @@
 #ifndef DNS_TYPES_H //header gaurd
 #define DNS_TYPES_H
+// Should never include DNSRecord.h
+// Enforcing acyclic dependencies
+
 
 // Repsonsibility of DNSTypes.h
 // Contains fundamental types that are shared across the project
