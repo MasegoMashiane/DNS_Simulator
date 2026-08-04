@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string_view>
 #include "../include/DNSTypes.h"
-using namespace std;
-using namespace dns;
+
 
 // DNS server does not directly store domains, it stores
 // DNS Resource Records (RRs)
@@ -106,7 +105,24 @@ class DNSRecord
         // (error) during execution.
         // allows the C++ compiler to generate faster, more 
         // optimized machine code.
-        RecordType type() const noexcept;
+        dns::RecordType type() const noexcept;
+        
         std::string_view value() const noexcept;
+        
+        dns::TTL tll() const noexcept;
+        
+        void setTTL(dns::TTL ttl);
+
+        bool matches(std::string_view domain) const noexcept;
+    
+    private:
+        dns::DomainName domain_;
+
+        dns::RecordType type_;
+
+        std::string value_;
+
+        dns::TTL ttl_;
+
         
 };

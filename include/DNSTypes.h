@@ -1,5 +1,8 @@
 #ifndef DNS_TYPES_H //header gaurd
 #define DNS_TYPES_H
+
+#include <cstdint>
+#include <string>
 // Should never include DNSRecord.h
 // Enforcing acyclic dependencies
 
@@ -12,6 +15,13 @@
 
 namespace dns{
     // DNS resource record types
+
+    using DomainName = std::string;
+    using RecordValue = std::string;
+    using TTL = std::uint32_t;
+
+    inline constexpr TTL DefaultTTL = 300;
+
     enum class RecordType // strongly typed/ scoped enumeration
                         // Provides type safety and clean scoping
                         // For enum constants.
@@ -30,20 +40,20 @@ namespace dns{
     // DNS operetion Codes
     enum class OpCode
     {
-        Query, 
-        IQuery,
-        Status
+        Query = 0, 
+        IQuery = 1,
+        Status = 2
     };
 
     // DNS response codes
     enum class ResponseCode
     {
-        noError,
-        FormatError,
-        ServerFailure,
-        NameError,
-        NotImplemented,
-        Refused
+        noError = 0,
+        FormatError = 1,
+        ServerFailure = 2,
+        NameError = 3,
+        NotImplemented = 4,
+        Refused = 5
     };
 }
 
